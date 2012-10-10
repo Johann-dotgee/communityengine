@@ -1,5 +1,6 @@
 fr:
   inscription: Inscription
+  informations: Informations
   email: Email
   date:
     formats:
@@ -41,7 +42,15 @@ fr:
               too_short: "Mot de passe de confirmation trop court"
             email:
               too_short: "L'adresse e-mail semble trop courte"
-              invalid: "L'adresse e-mail ne semble pas au bon format" 
+              invalid: "L'adresse e-mail ne semble pas au bon format"
+        post:
+          attributes:
+            raw_post:
+              blank: "Votre publication ne dispose d'aucun contenu"
+      sb_post:
+        attributes:
+          body: 
+            blank: "Votre publication ne contient pas de message"
     attributes:
       photo:
         created_at: "ajoutée le: "
@@ -1529,3 +1538,5 @@ fr:
   back_to_photo_manager: "Retour à mes photos"
   #en: see_all_recent_posts: "See all recent posts"
   see_all_recent_posts: "Voir toutes les publications r&eacute;centes"
+  #en: send_comment_notifications: "Send comment notifications?"
+  send_comment_notifications: "Recevoir les notifications des commentaires"

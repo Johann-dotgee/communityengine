@@ -1,19 +1,23 @@
 #header
   #login
-    = form_tag sessions_url, :class => "ajaxSubmit" do
-      .loginButton
-        %button.inputButton.icon16.tick.btn{:type => "submit"} Connexion
-      .loginColumn
-        %input#sessOpen{:type => "checkbox", :value => true}
-        %label{:for => "sessOpen"} Garder ma session ouverte
-        %span.hidden#default_email
-        %input#email.inputTextTiny.icon16.email.required.default{:type => "email", :name => "email"}
-      .loginColumn
-        = link_to "Inscription", "#"
-        %span -
-        = link_to "Mot de passe oublié ?", "#"
-        %span.hidden#default_password Mot de passe
-        %input#password.inputTextTiny.icon16.key.required.default{:type => "password", :name => "email"}
+    - unless logged_in?
+      = form_tag sessions_path, :class => "ajaxSubmit" do
+        .loginButton
+          %button.inputButton.icon16.tick.btn{:type => "submit"} Connexion
+        .loginColumn
+          %input#sessOpen{:type => "checkbox", :value => true}
+          %label{:for => "sessOpen"} Garder ma session ouverte
+          %span.hidden#default_email
+          = text_field_tag 'email', nil, :class => "inputTextTiny icon16 email required default", :id => "email"
+        .loginColumn
+          = link_to "Inscription", "#"
+          %span -
+          = link_to "Mot de passe oublié ?", "#"
+          %span.hidden#default_password Mot de passe
+          = text_field_tag 'password', nil, :class => "inputTextTiny icon16 key required default", :id => "password", :type => "password"
+    - else
+      /%span.icon16.tick.btn{:style => "margin-top: 15px;"}= "Connect&eacute;(e)".html_safe
+      = render :partial => "shared/user_menu"
   = link_to "/" do
     = image_tag "http://statics-whozimmo.businessimmo.com/img/logo.gif", :id => "logo"
 

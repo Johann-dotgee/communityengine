@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get '/base/:action' => 'base'
-
+  get '/search' => 'search#search', :as => :search_global
   get '/forums/recent' => 'sb_posts#index', :as => :recent_forum_posts
   get '/photos/recent' => 'photos#recent', :as => :recent_photos
 
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       get :monitored
     end
   end
+
+  resources :routes
     
   resources :monitorship
   resources :sb_posts do

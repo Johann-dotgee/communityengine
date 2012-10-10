@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'mysql2'
-gem 'omniauth-viadeo', :path => 'omniauth-viadeo'
+gem 'omniauth-viadeo', :git => 'git://github.com/Johann-dotgee/omniauth-viadeo.git'
 
 gemspec

@@ -4,7 +4,7 @@
 #yui-main
   .yui-b.main
     %br
-    -box :class => "blockFlag green" do 
+    -box :class => "blockFlag green first_alt" do 
       %h1
         .blockFlagGreenRightErgo
         .blockFlagGreenLeftErgo
@@ -12,24 +12,23 @@
       .blockContent
         = render :partial => 'posts/post', :collection => @posts
         %h6.all= link_to :see_all_recent_posts.l, recent_path
-  -box :class => "blockFlag green" do 
-    %h1
-      .blockFlagGreenRightErgo
-      .blockFlagGreenLeftErgo
-      = :inscription.l
-    .blockContent
-      = form_tag users_url, :class => "ajaxSubmit", :id => "register" do
-        = text_field_tag :login, nil, :class => "inputText default", :id => "user_login", :placeholder => "Identifiant"
-        = email_field_tag :email, nil, :class => "inputText default", :placeholder => "Adresse e-mail"
-        = select_tag "birthday(1i)", options_for_select((1940..2030).to_a)
-        = select_tag "birthday(2i)", options_for_select(["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"])
-        = select_tag "birthday(3i)", options_for_select((1..31))
-        %br
-        %br
-        = password_field :password, nil, :class => "inputText default", :placeholder => "Mot de passe"
-        = password_field :password_confirmation, nil, :class => "inputText default", :placeholder => "Mot de passe (confirmation)"
-        %p.btn-in-box
-          %button{:type => "submit", :class => "inputButton icon16 tick btn"} S'inscrire
+  - unless logged_in?
+    -box :class => "blockFlag green" do 
+      %h1
+        .blockFlagGreenRightErgo
+        .blockFlagGreenLeftErgo
+        = :inscription.l
+      .blockContent
+        = form_for :user, :url => users_path, :html => {:class => "ajaxSubmit", :id => "register"} do |f|
+          = f.text_field :login, :class => "inputText default", :id => "user_login", :placeholder => "Identifiant"
+          = f.email_field :email, :class => "inputText default", :placeholder => "Adresse e-mail"
+          = date_select :user, :birthday, {:start_year => (Time.now.year - configatron.max_age), :end_year => (Time.now.year - configatron.min_age)}
+          %br
+          %br
+          = f.password_field :password, :class => "inputText default", :placeholder => "Mot de passe"
+          = f.password_field :password_confirmation, :class => "inputText default", :placeholder => "Mot de passe (confirmation)"
+          %p.btn-in-box
+            %button{:type => "submit", :class => "inputButton icon16 tick btn"} S'inscrire
 .yui-b.main
   =render :partial => 'shared/explore'
 

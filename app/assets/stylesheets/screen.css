@@ -38,6 +38,28 @@ alt blue dark #94beff
 /*  13. TAG CLOUDS                                        */
 /*  14. USER LIST                                         */
 /*========================================================*/
+.middle-in-box{
+  margin-left: 350px;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+}
+h1.relative{
+  height: 20px;
+}
+.absolute.middle-in-box{
+  margin-left: 0;
+  left: 400px;
+}
 h3{
   font-style: normal !important;
 }
@@ -945,18 +967,19 @@ table.poll {
 
 /* User Menu Dropdown*/
 #user-menu-tip {
-  background: #fff;
+  background: #F2F6F4;
   font-size: 12px;
   position: absolute;
   right: 0;
   top: -9999px;
 	*width:150px;
-	border: 2px solid #2a1301; 
+	border: 2px solid green; 
 	border-top: none;	
   padding: 10px;
   z-index: 999;  
 }
 #user-menu {
+        margin-top: 25px;
 	padding-right: 15px;
 	position: relative;
 	background: url(/assets/icons/bullet_arrow_down_50.png) no-repeat right;
@@ -965,7 +988,7 @@ table.poll {
 	background: url(/assets/icons/bullet_arrow_down.png) no-repeat right;	
 } 
 #user-menu:hover #user-menu-tip {
-  top: 22px;
+  top: 15px;
 }
 
 .icon_row a {

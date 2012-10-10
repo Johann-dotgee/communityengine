@@ -1,0 +1,12 @@
+- @results.each do |r|
+  -box :class => "blockFlag green first_alt" do
+    %h1.relative
+      .blockFlagGreenRightErgo
+      .blockFlagGreenLeftErgo
+      %span.left= @names[r[:origin].class.name.downcase.to_sym]
+      %span.absolute.middle-in-box= r[:title]
+      %span.right= r[:owner].blank? ? "" : r[:owner].login
+    .blockContent
+      = raw r[:content]
+      %p.btn-in-box
+        = link_to "<span class='inputButton btn'>En savoir plus</span>".html_safe, r[:route]

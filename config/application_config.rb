@@ -6,7 +6,7 @@ configuration = {
 
   :app_host => "example.com", #override this in your application.yml
   
-  :community_name => "Community",
+  :community_name => "Whozimmo",
   
   :community_tagline => "CommunityEngine Rocks!",
   :community_description =>  "The Best Place for People Who Love Communities",

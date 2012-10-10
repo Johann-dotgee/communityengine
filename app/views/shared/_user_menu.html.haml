@@ -1,5 +1,6 @@
 %h2#user-menu
-  =:logged_in.l
+  /=:logged_in.l
+  %span.icon16.tick.btn{:style => "margin-top: 15px;"}= "Connect&eacute;(e): ".html_safe
   = link_to current_user.login, dashboard_user_path(current_user)
   #user-menu-tip
     %ul

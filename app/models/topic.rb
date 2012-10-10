@@ -1,6 +1,13 @@
 class Topic < ActiveRecord::Base
   acts_as_activity :user
-  
+  searchable do
+    text :sb_post do
+      sb_posts.map(&:body)
+    end
+    text :user, :title
+    string :forum_container
+    string :user
+  end
   acts_as_taggable
   belongs_to :forum, :counter_cache => true
   belongs_to :user
@@ -21,6 +28,9 @@ class Topic < ActiveRecord::Base
   
   scope :recently_replied, order('replied_at DESC')
 
+  def forum_container
+    forum
+  end
   def notify_of_new_post(post)
     monitorships.each do |m|
       UserNotifier.new_forum_post_notice(m.user, post).deliver if (m.user != post.user) && m.user.notify_comments

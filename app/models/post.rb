@@ -1,7 +1,16 @@
 class Post < ActiveRecord::Base
   include Rakismet::Model
   rakismet_attrs :comment_type => 'post'
-  attr_protected :akismet_attrs  
+  attr_protected :akismet_attrs 
+
+  searchable do
+    text :title, :raw_post, :post
+    integer :user_id
+    string :user do
+      User.find(user_id)
+    end
+    time :published_at, :created_at, :updated_at
+  end
   
   
   acts_as_commentable
@@ -33,7 +42,8 @@ class Post < ActiveRecord::Base
     
   attr_accessor :invalid_emails
 
-  attr_accessible :category_id, :title, :raw_post, :published_as, :send_comment_notifications
+  attr_accessible :category_id, :title, :raw_post, :published_as, :send_comment_notifications, :description
+
   
   # Class Methods
   class << self

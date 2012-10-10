@@ -30,7 +30,11 @@ class SbPost < ActiveRecord::Base
   
   scope :with_query_options, :select => 'sb_posts.*, topics.title as topic_title, forums.name as forum_name', :joins => 'inner join topics on sb_posts.topic_id = topics.id inner join forums on topics.forum_id = forums.id', :order => 'sb_posts.created_at desc'
   scope :recent, :order => 'sb_posts.created_at ASC'
-  validate :check_spam    
+  validate :check_spam   
+  searchable do
+    text :body
+    string :author_name, :author_email
+  end
     
   def monitor_topic
     return unless user    

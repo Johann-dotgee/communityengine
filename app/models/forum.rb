@@ -17,6 +17,9 @@ class Forum < ActiveRecord::Base
 
   attr_accessible :name, :position, :description
   
+  searchable do
+    text :name, :description
+  end
   def to_param
     id.to_s << "-" << (name ? name.parameterize : '' )
   end
